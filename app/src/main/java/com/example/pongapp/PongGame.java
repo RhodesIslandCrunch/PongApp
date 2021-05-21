@@ -101,6 +101,28 @@ public class PongGame extends SurfaceView implements  Runnable {
     public void run(){
 
     }
+    //this method is called by PongActivity when the player quits the game
+    public void pause(){
+        // Set mPlaying to false
+        // Stopping the thread isn't always instant
+        mPlaying = false;
+        try {
+            // Stop the thread
+            mGameThread.join();
+        } catch (InterruptedException e) {
+            Log.e("Error:", "joining thread");
+        }
+    }
+// This method is called by PongActivity
+// when the player starts the game
+    public void resume() {
+        mPlaying = true;
+        // Initialize the instance of Thread
+        mGameThread = new Thread(this);
+        // Start the thread
+        mGameThread.start();
+    }
+
 
 
 }
