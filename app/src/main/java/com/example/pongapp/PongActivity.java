@@ -2,17 +2,16 @@ package com.example.pongapp;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.Window;
 import android.view.WindowManager;
 import android.graphics.Point;
 import android.view.Display;
 
 public class PongActivity extends Activity {
 
+    private PongGame mPongGame;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //variable creation
-        private PongGame mPongGame;
         //Android stuff, fixing screen etc.
         super.onCreate(savedInstanceState);
         //Chapter 8
@@ -28,6 +27,8 @@ public class PongActivity extends Activity {
     @Override
     protected void onResume(){
         super.onResume();
+        //Chapter 9
+        mPongGame.resume();
     }
     @Override
     protected void onPause(){
