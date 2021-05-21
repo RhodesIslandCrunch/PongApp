@@ -7,7 +7,7 @@ import android.graphics.Paint;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-public class PongGame extends SurfaceView {
+public class PongGame extends SurfaceView implements  Runnable {
     //are we debugging?
     private final boolean DEBUGGING = true;
     //Objects for drawing
@@ -30,6 +30,11 @@ public class PongGame extends SurfaceView {
     // score + lives
     private int mScore;
     private int mLives;
+    //Thread Variables
+    private Thread mGameThread = null;
+    //volatile variable can be accessed from both inside and outside the thread
+    private volatile boolean mPlaying;
+    private boolean mPaused = true;
     //pong game constructor
     // called from pong activity
     //mponggame = new PongGame(this,size.x,size.y)
@@ -87,5 +92,15 @@ public class PongGame extends SurfaceView {
         mPaint.setTextSize(debugSize);
         mCanvas.drawText("FPS: " + mFPS, 10, debugStart+debugSize,mPaint);
     }
+    //when we start the thread with : mGameTrhead.start();
+    //the run method is continously called by Android
+    //because we implemented the Runnable interface
+    //calling mGameThread.join();
+    // Will stop the thread
+    @Override
+    public void run(){
+
+    }
+
 
 }
