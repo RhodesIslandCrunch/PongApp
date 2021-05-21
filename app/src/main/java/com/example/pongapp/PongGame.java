@@ -29,14 +29,27 @@ public class PongGame extends SurfaceView {
     // score + lives
     private int mScore;
     private int mLives;
-};
-//pong game constructor
-// called from pong activity
-//mponggame = new PongGame(this,size.x,size.y)
-/*
-public PongGame(Context context, int x, int y){
-    //Super ... Calls the parent class
-    // constructor of SurfaceView
-    // provided by Android
-    super(context);
-};*/
+    //pong game constructor
+    // called from pong activity
+    //mponggame = new PongGame(this,size.x,size.y)
+    public PongGame(Context context, int x, int y) {
+        //Super ... Calls the parent class
+        // constructor of SurfaceView
+        // provided by Android
+        super(context);
+        //screen size values
+        mScreenX = x;
+        mScreenY = y;
+        //font = 5% screen width
+        mFontSize = mScreenX / 20;
+        //intialize the objects for drawing
+        //getholder is a method of SurfaceView
+        mOurHolder = getHolder();
+        mPaint = new Paint();
+        //intialize bat + ball
+
+        //start game
+        startNewGame();
+    }
+
+}
