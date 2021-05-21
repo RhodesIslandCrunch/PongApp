@@ -2,6 +2,7 @@ package com.example.pongapp;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -50,6 +51,35 @@ public class PongGame extends SurfaceView {
 
         //start game
         startNewGame();
+    }
+    //player lost or is starting first game
+    private void startNewGame(){
+        //put ball to start
+
+        //reset score and player lives
+        mScore = 0;
+        mLives = 3;
+    }
+    private void draw(){
+        if(mOurHolder.getSurface().isValid()){
+            //lock canvas ready to draw
+            mCanvas = mOurHolder.lockCanvas();
+            //fill screen with solid color
+            mCanvas.drawColor(Color.argb(255,26,128,182));
+            //color paint
+            mPaint.setColor(Color.argb(255,255,255,255));
+            //draw the bat and ball
+            //choose the font size
+            mPaint.setTextSize(mFontSize);
+            //draw HUD
+            mCanvas.drawText("Score: "+mScore + "Lives: "+ mLives, mFontMargin,mFontSize,mPaint);
+            if(DEBUGGING) {
+                printDebuggingText();
+            }
+            // Display the Drawing on screen
+            //unlockCanvasAndPost is a metod of Surfaceview
+            mOurHolder.unlockCanvasAndPost(mCanvas);
+        }
     }
 
 }
