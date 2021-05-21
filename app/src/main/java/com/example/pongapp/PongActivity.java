@@ -33,5 +33,7 @@ public class PongActivity extends Activity {
     @Override
     protected void onPause(){
         super.onPause();
+
+        mPongGame.pause();
     }
 }

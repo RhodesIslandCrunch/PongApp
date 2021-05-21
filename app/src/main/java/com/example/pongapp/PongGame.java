@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -92,13 +93,49 @@ public class PongGame extends SurfaceView implements  Runnable {
         mPaint.setTextSize(debugSize);
         mCanvas.drawText("FPS: " + mFPS, 10, debugStart+debugSize,mPaint);
     }
-    //when we start the thread with : mGameTrhead.start();
-    //the run method is continously called by Android
+    //when we start the thread with : mGameThread.start();
+    //the run method is continuously called by Android
     //because we implemented the Runnable interface
     //calling mGameThread.join();
     // Will stop the thread
     @Override
     public void run(){
+        //mplaying gives better control since its accessible variable vs called function
+        //mplaying must be true AND thread running for main loop to execute
+        while(mPlaying){
+            //Loop Start Time
+            long frameStartTime = System.currentTimeMillis();
+            //game is not paused
+            //call update
+            if(!mPaused){
+                update();
+                //bat and ball in new positions
+                //check collisions
+                detectCollisions();
+            }
+            // movement and collisions area handled
+            //draw scene
+            draw();
+            //loop time
+                //stored in timeThisFrame
+            long timeThisFrame = System.currentTimeMillis()-frameStartTime;
+            //at least 1 millisecond otherwise divison by zero
+            if(timeThisFrame > 0){
+                //calculate frame rate and pass to update methods
+                mFPS = MILLIS_IN_SECOND / timeThisFrame;
+            }
+        }
+    }
+    private void update(){
+        //update bat and ball
+    }
+    private void detectCollisions(){
+        //has bat hit ball
+        //has ball hit screen edge
+        //bottom
+        //top
+        //left
+        //right
 
     }
     //this method is called by PongActivity when the player quits the game
