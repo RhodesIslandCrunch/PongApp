@@ -44,9 +44,7 @@ public class Bat {
         return mRect;
     }
     void setMovementState(int state){
-
         mBatMoving = state;
-
     }
     // Update the bat- Called each frame/loop
     void update(long fps){
