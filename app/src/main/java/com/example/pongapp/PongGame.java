@@ -51,7 +51,7 @@ public class PongGame extends SurfaceView implements  Runnable {
     private int mBoopID = -1;
     private int mBopID = -1;
     private int mMissID = -1;
-    //pong game constructo
+    //pong game constructor
     // called from pong activity
     //mponggame = new PongGame(this,size.x,size.y)
     public PongGame(Context context, int x, int y) {

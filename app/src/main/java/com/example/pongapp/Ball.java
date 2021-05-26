@@ -79,12 +79,9 @@ public class Ball {
         mXVelocity = mXVelocity * 1.1f;
         mYVelocity = mYVelocity * 1.1f;
     }
-    // Bounce the ball back based on
-
-// whether it hits the left or right-hand side
+    // Bounce the ball back based on whether it hits the left or right-hand side
 
     void batBounce(RectF batPosition){
-
         // Detect centre of bat
         float batCenter = batPosition.left +
                 (batPosition.width() / 2);
