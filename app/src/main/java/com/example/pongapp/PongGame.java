@@ -36,7 +36,8 @@ public class PongGame extends SurfaceView implements  Runnable {
     //volatile variable can be accessed from both inside and outside the thread
     private volatile boolean mPlaying;
     private boolean mPaused = true;
-    //pong game constructor
+
+    //pong game constructo
     // called from pong activity
     //mponggame = new PongGame(this,size.x,size.y)
     public PongGame(Context context, int x, int y) {
