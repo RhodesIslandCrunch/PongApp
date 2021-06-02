@@ -44,5 +44,4 @@ public class CPU<mLength> {
     float retColl(){
         return mHeight;
     }
-
 }
