@@ -16,11 +16,13 @@ public class CPU<mLength> {
         //the bats are the same height
 
         mRect = new RectF();
+        mRect.top = 0;
+        mRect.bottom = mHeight;
+
     }
 
     /**
      * returns the bat's loctation on screen
-     *
      * @return rectf the positon of the ball on the x part of the screen
      */
     RectF getRect() {
