@@ -11,6 +11,7 @@ public class Ball {
     private float mYVelocity;
     private float mBallWidth;
     private float mBallHeight;
+    private float CPUBat;
 
     //constructor called by mBall = new Ball (mScreenX);
 //called in ponggame

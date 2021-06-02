@@ -37,6 +37,7 @@ public class PongGame extends SurfaceView implements  Runnable {
     //other game objects
     private Bat mBat;
     private Ball mBall;
+    private CPU mCPU;
     // score + lives
     private int mScore;
     private int mLives;
@@ -77,6 +78,7 @@ public class PongGame extends SurfaceView implements  Runnable {
         //intialize bat + ball
         mBall = new Ball(mScreenX);
         mBat = new Bat(mScreenX,mScreenY);
+        mCPU = new CPU(mScreenX,mScreenY);
         // Prepare the SoundPool instance
         // Depending upon the version of Android
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -131,6 +133,10 @@ public class PongGame extends SurfaceView implements  Runnable {
             //draw the bat and ball
             mCanvas.drawRect(mBall.getRect(), mPaint);
             mCanvas.drawRect(mBat.getRect(), mPaint);
+
+            // My code
+            mCanvas.drawRect(mCPU.getRect(), mPaint);
+
             //choose the font size
             mPaint.setTextSize(mFontSize);
             //draw HUD
@@ -192,6 +198,7 @@ public class PongGame extends SurfaceView implements  Runnable {
         //update bat and ball
         mBall.update(mFPS);
         mBat.update(mFPS);
+        mCPU.update(mBall.getRect().centerX());
     }
     // Handle all the screen touches
 
@@ -255,10 +262,7 @@ public class PongGame extends SurfaceView implements  Runnable {
             }
         }
         //top
-        /*
-            Changed this to 5 for the top bat
-         */
-        if(mBall.getRect().top < 5){
+        if(mBall.getRect().top < mCPU.retColl()){
             mBall.reverseYVelocity();
             mSP.play(mBoopID, 1, 1, 0, 0, 1);
         }
