@@ -7,7 +7,11 @@ public class CPU<mLength> {
     private float mLength;
     private float mHeight;
     private RectF mRect;
-
+    /**
+     * Constructor for the CPU's Bat
+     * @param mScreenX  horizontal size of screen
+     * @param mScreenY  Vertical size of screen
+     */
     public CPU(int mScreenX,int mScreenY) {
         // One eighth the screen width
         mLength = mScreenX / 8;
@@ -35,9 +39,7 @@ public class CPU<mLength> {
     void update(float ballLoc){
         // move the bat
         mRect.left = mRect.left + (ballLoc - mLength/2);
-
         mRect.right = mRect.left + mLength;
-
     }
     float retColl(){
         return mHeight;
