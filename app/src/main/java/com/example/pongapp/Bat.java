@@ -18,6 +18,12 @@ public class Bat {
 
     private int mBatMoving = STOPPED;
 
+    /**
+     * Constructor for the player controlled bat
+     *
+     * @param  sx  The Horizontal Length of screen
+     * @param  sy  The Vertical Lenght of screen
+     */
     public Bat(int sx, int sy){
 
         // horizontal resolution
@@ -40,13 +46,26 @@ public class Bat {
         // width of the screen in 1 second
         mBatSpeed = mScreenX;
     }
+    /**
+     * Function used to know where the rectangle is
+     *
+     * @return RectF Returns the center of the bat
+     */
     RectF getRect(){
         return mRect;
     }
+    /**
+     * Resets the ball back to the middle of the screen when the game starts
+     * @param state the player input
+     */
     void setMovementState(int state){
         mBatMoving = state;
     }
     // Update the bat- Called each frame/loop
+    /**
+     * update changes the bat's position and collison every frame
+     * @param  fps the rate at which the game runs
+     */
     void update(long fps){
         // Move the bat based on the mBatMoving variable
         // and the speed of the previous frame

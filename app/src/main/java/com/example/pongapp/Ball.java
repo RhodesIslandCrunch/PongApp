@@ -14,6 +14,11 @@ public class Ball {
 
     //constructor called by mBall = new Ball (mScreenX);
 //called in ponggame
+    /**
+     * Constructor
+     *
+     * @param  screenX  the width of the screen used to set ball size
+     */
     public Ball(int screenX) {
 
         // Make the ball square and 1% of screen width
@@ -39,7 +44,11 @@ public class Ball {
 
     // Update the ball position.
     // Called each frame/loop
-
+    /**
+     * Resets the ball back to the middle of the screen when the game starts
+     *
+     * @param  fps  The speed the game is running at
+     */
     void update(long fps){
         // Move the ball based upon the
         // horizontal (mXVelocity) and
@@ -55,14 +64,25 @@ public class Ball {
         mRect.bottom = mRect.top + mBallHeight;
     }
     // Reverse vertical
+    /**
+     * Reverses the Vertical Velocity upon collision
+     */
     void reverseYVelocity(){
         mYVelocity = -mYVelocity;
     }
-    // Reverse Horizontal
+    /**
+     * Reverses the Horizontal Velocity upon collision
+     */
     void reverseXVelocity(){
         mXVelocity = -mXVelocity;
     }
 
+    /**
+     * Resets the ball back to the middle of the screen when the game starts
+     *
+     * @param  y  the vertical length of screen
+     * @param  x  the horizontal length of screen
+     */
     void reset(int x, int y){
         // Initialise the four points of the rectangle which defines the ball
         mRect.left = x / 2;
@@ -74,13 +94,20 @@ public class Ball {
         mYVelocity = -(y / 3);
         mXVelocity = (x / 2);
     }
+    /**
+     * Increases ball velocity after hit
+     */
     void increaseVelocity(){
         // increase the speed by 10%
         mXVelocity = mXVelocity * 1.1f;
         mYVelocity = mYVelocity * 1.1f;
     }
     // Bounce the ball back based on whether it hits the left or right-hand side
-
+    /**
+     * Detects a collision between bat and ball for player
+     *
+     * @param  batPosition the position of the bat
+     */
     void batBounce(RectF batPosition){
         // Detect centre of bat
         float batCenter = batPosition.left +

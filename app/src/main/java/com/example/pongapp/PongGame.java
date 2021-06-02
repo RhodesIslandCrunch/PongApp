@@ -54,6 +54,12 @@ public class PongGame extends SurfaceView implements  Runnable {
     //pong game constructor
     // called from pong activity
     //mponggame = new PongGame(this,size.x,size.y)
+    /**
+     * Constructor that handles all Pong Logic
+     *
+     * @param  y  the vertical length of screen
+     * @param  x  the horizontal length of screen
+     */
     public PongGame(Context context, int x, int y) {
         //Super ... Calls the parent class
         // constructor of SurfaceView
@@ -100,6 +106,9 @@ public class PongGame extends SurfaceView implements  Runnable {
         startNewGame();
     }
     //player lost or is starting first game
+    /**
+     * Resets the ball and player lives/score
+     */
     private void startNewGame(){
         //put ball to start
         mBall.reset(mScreenX,mScreenY);
@@ -108,6 +117,9 @@ public class PongGame extends SurfaceView implements  Runnable {
         mScore = 0;
         mLives = 3;
     }
+    /**
+     * Handles all drawing on the screen including objects
+     */
     private void draw(){
         if(mOurHolder.getSurface().isValid()){
             //lock canvas ready to draw
@@ -131,6 +143,9 @@ public class PongGame extends SurfaceView implements  Runnable {
             mOurHolder.unlockCanvasAndPost(mCanvas);
         }
     }
+    /**
+     * Print Games fps
+     */
     private void printDebuggingText(){
         int debugSize = mFontSize / 2;
         int debugStart = 150;
@@ -142,6 +157,9 @@ public class PongGame extends SurfaceView implements  Runnable {
     //because we implemented the Runnable interface
     //calling mGameThread.join();
     // Will stop the thread
+    /**
+     * Game Running handles all logic
+     */
     @Override
     public void run(){
         //mplaying gives better control since its accessible variable vs called function
@@ -177,6 +195,11 @@ public class PongGame extends SurfaceView implements  Runnable {
     }
     // Handle all the screen touches
 
+    /**
+     * handles the player input to move the bat
+     *
+     * @param  motionEvent the place the player touched
+     */
     @Override
 
     public boolean onTouchEvent(MotionEvent motionEvent) {
@@ -232,7 +255,10 @@ public class PongGame extends SurfaceView implements  Runnable {
             }
         }
         //top
-        if(mBall.getRect().top < 0){
+        /*
+            Changed this to 5 for the top bat
+         */
+        if(mBall.getRect().top < 5){
             mBall.reverseYVelocity();
             mSP.play(mBoopID, 1, 1, 0, 0, 1);
         }
@@ -249,6 +275,10 @@ public class PongGame extends SurfaceView implements  Runnable {
 
     }
     //this method is called by PongActivity when the player quits the game
+    /**
+     * Pauses the game thread
+     * stops the current game thread
+     */
     public void pause(){
         // Set mPlaying to false
         // Stopping the thread isn't always instant
@@ -262,6 +292,10 @@ public class PongGame extends SurfaceView implements  Runnable {
     }
 // This method is called by PongActivity
 // when the player starts the game
+    /**
+     * Unpauses the game
+     * starts a new gamethread to handle pong
+     */
     public void resume() {
         mPlaying = true;
         // Initialize the instance of Thread
